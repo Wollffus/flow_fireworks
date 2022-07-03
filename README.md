@@ -1,3 +1,8 @@
+## Known Issues
+
+- Fireworks trigger off each player in the server when used
+(open a PR if you can solve this)
+
 # flow_fireworks
 Want to add some fun items to your server? This resource will add 3 different style fireworks
 as well as 2 different style smoke signals.
