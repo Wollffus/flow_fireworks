@@ -48,8 +48,7 @@ end
 ------------------------------------------------SINGLE USE FIREWORK------------------------------------------------------------------------
 
 RegisterNetEvent('fireworks:SingleUse')
-AddEventHandler('fireworks:SingleUse', function(_source)
-    local _source = source
+AddEventHandler('fireworks:SingleUse', function()
     coords = GetEntityCoords(PlayerPedId())
     RequestNamedPtfxAsset(GetHashKey('scr_ind1'))
     while not HasNamedPtfxAssetLoaded(GetHashKey('scr_ind1')) do
@@ -75,8 +74,7 @@ end)
 ------------------------------------------------Barrage FIREWORK------------------------------------------------------------------------
 
 RegisterNetEvent('fireworks:Barrage')
-AddEventHandler('fireworks:Barrage', function(_source)
-    local _source = source
+AddEventHandler('fireworks:Barrage', function()
     coords = GetEntityCoords(PlayerPedId())
     RequestNamedPtfxAsset(GetHashKey('scr_ind1'))
     while not HasNamedPtfxAssetLoaded(GetHashKey('scr_ind1')) do
@@ -112,8 +110,7 @@ end)
 ------------------------------------------------GRAND FINALE FIREWORK------------------------------------------------------------------------
 
 RegisterNetEvent('fireworks:MakeAmericaGreatAgain')
-AddEventHandler('fireworks:MakeAmericaGreatAgain', function(_source)
-    local _source = source
+AddEventHandler('fireworks:MakeAmericaGreatAgain', function()
     coords = GetEntityCoords(PlayerPedId())
     RequestNamedPtfxAsset(GetHashKey('scr_ind1'))
     while not HasNamedPtfxAssetLoaded(GetHashKey('scr_ind1')) do
@@ -237,8 +234,7 @@ end)
 ------------------------------------------------USA SMOKE SIGNAL------------------------------------------------------------------------
 
 RegisterNetEvent('fireworks:usasmokesignal')
-AddEventHandler('fireworks:usasmokesignal', function(_source)
-    local _source = source
+AddEventHandler('fireworks:usasmokesignal', function()
     local ped = PlayerPedId()
     local locations = {
         {['location'] = vector3(GetOffsetFromEntityInWorldCoords(ped,  2.0,0.0,-2.0)), ['rgb']=vector3(1.0,0.0,0.0)},--red
@@ -270,8 +266,7 @@ end
 ------------------------------------------------SMOKE SIGNAL------------------------------------------------------------------------
 
 RegisterNetEvent('fireworks:smokesignal')
-AddEventHandler('fireworks:smokesignal', function(_source)
-    local _source = source
+AddEventHandler('fireworks:smokesignal', function()
     local ped = PlayerPedId()
     local locations = {
         {['location'] = vector3(GetOffsetFromEntityInWorldCoords(ped,  2.0,0.0,-2.0)), ['rgb']=vector3(1.0,1.0,1.0)},--white
