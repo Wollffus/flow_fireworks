@@ -1,3 +1,7 @@
+# Known Issues
+Only the client who sets them off can see the fireworks and smoke signals. 
+If you know how to fix, please send it in a PR (:
+
 # flow_fireworks
 Want to add some fun items to your server? This resource will add 3 different style fireworks
 as well as 2 different style smoke signals.
