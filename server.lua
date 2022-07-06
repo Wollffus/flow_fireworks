@@ -31,7 +31,6 @@ for k,l in pairs(usableitems)do
 	RegisterServerEvent("RegisterUsableItem:"..k)
 	AddEventHandler("RegisterUsableItem:"..k, function(source)
 		local _source = source
-		print(k,"source",_source)
 		local ItemData = data.getItem(_source, k)
 		ItemData.RemoveItem(1)
 		TriggerClientEvent(l.useditemevent, _source)
