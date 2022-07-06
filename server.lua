@@ -4,72 +4,42 @@ TriggerEvent("redemrp_inventory:getData",function(call)
     data = call
 end)
 
-RegisterServerEvent("fireworks:SingleUse")
-AddEventHandler("fireworks:SingleUse", function()
-    local _source = source
-	TriggerClientEvent('fireworks:SingleUse', _source)
-end)
+local usableitems = {
+	["firework"] = { 
+		eventname = "fireworks:SingleUse",
+		useditemevent = "client_fireworks:SingleUse",
+	},
+	["bfirework"] = { 
+		eventname = "fireworks:Barrage",
+		useditemevent = "client_fireworks:Barrage",
+	},
+	["ffirework"] = { 
+		eventname = "fireworks:MakeAmericaGreatAgain",
+		useditemevent = "client_fireworks:MakeAmericaGreatAgain",
+	},
+	["smokesignal"] = { 
+		eventname = "fireworks:smokesignal",
+		useditemevent = "client_fireworks:smokesignal",
+	},
+	["usasmokesignal"] = { 
+		eventname = "fireworks:usasmokesignal",
+		useditemevent = "client_fireworks:usasmokesignal",
+	},
+}
 
-RegisterServerEvent("RegisterUsableItem:firework")
-AddEventHandler("RegisterUsableItem:firework", function()
-    local _source = source
-	TriggerClientEvent('fireworks:SingleUse', _source)
-	local ItemData = data.getItem(_source, 'firework')
-	ItemData.RemoveItem(1)
-end)
+for k,l in pairs(usableitems)do
+	RegisterServerEvent("RegisterUsableItem:"..k)
+	AddEventHandler("RegisterUsableItem:"..k, function(source)
+		local _source = source
+		print(k,"source",_source)
+		local ItemData = data.getItem(_source, k)
+		ItemData.RemoveItem(1)
+		TriggerClientEvent(l.useditemevent, _source)
+	end)
 
-RegisterServerEvent("fireworks:Barrage")
-AddEventHandler("fireworks:Barrage", function()
-    local _source = source
-	TriggerClientEvent('fireworks:Barrage', _source)
-end)
-
-RegisterServerEvent("RegisterUsableItem:bfirework")
-AddEventHandler("RegisterUsableItem:bfirework", function()
-    local _source = source
-	TriggerClientEvent('fireworks:Barrage', _source)
-	local ItemData = data.getItem(_source, 'bfirework')
-	ItemData.RemoveItem(1)
-end)
-
-RegisterServerEvent("fireworks:MakeAmericaGreatAgain")
-AddEventHandler("fireworks:MakeAmericaGreatAgain", function()
-    local _source = source
-	TriggerClientEvent('fireworks:MakeAmericaGreatAgain', _source)
-end)
-
-RegisterServerEvent("RegisterUsableItem:ffirework")
-AddEventHandler("RegisterUsableItem:ffirework", function()
-    local _source = source
-	TriggerClientEvent('fireworks:MakeAmericaGreatAgain', _source)
-	local ItemData = data.getItem(_source, 'ffirework')
-	ItemData.RemoveItem(1)
-end)
-
-RegisterServerEvent("fireworks:smokesignal")
-AddEventHandler("fireworks:smokesignal", function()
-    local _source = source
-	TriggerClientEvent('fireworks:smokesignal', _source)
-end)
-
-RegisterServerEvent("RegisterUsableItem:smokesignal")
-AddEventHandler("RegisterUsableItem:smokesignal", function()
-    local _source = source
-    TriggerClientEvent('fireworks:smokesignal', _source)
-	local ItemData = data.getItem(_source, 'smokesignal')
-	ItemData.RemoveItem(1)
-end)
-
-RegisterServerEvent("fireworks:usasmokesignal")
-AddEventHandler("fireworks:usasmokesignal", function()
-    local _source = source
-	TriggerClientEvent('fireworks:usasmokesignal', _source)
-end)
-
-RegisterServerEvent("RegisterUsableItem:usasmokesignal")
-AddEventHandler("RegisterUsableItem:usasmokesignal", function()
-    local _source = source
-    TriggerClientEvent('fireworks:usasmokesignal', _source)
-	local ItemData = data.getItem(_source, 'usasmokesignal')
-	ItemData.RemoveItem(1)
-end)
+	RegisterServerEvent(l.eventname)
+	AddEventHandler(l.eventname, function(coords)
+		local _source = source
+		TriggerClientEvent(l.eventname, -1, coords)
+	end)
+end
